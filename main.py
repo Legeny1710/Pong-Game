@@ -1,4 +1,5 @@
-from turtle import Turtle, Screen
+from turtle import Screen
+from paddle import Paddle
 
 screen = Screen()
 screen.bgcolor("black")
@@ -7,40 +8,23 @@ screen.title("Pong Game")
 
 screen.tracer(0)
 
-paddle = Turtle()
-paddle.shape("square")
-paddle.shapesize(stretch_wid=5, stretch_len=0.8)
-paddle.color("white")
-paddle.penup()
-paddle.goto(350, 0)
 
-
-
-def move_paddle_up():
-    new_y = paddle.ycor() + 20
-    paddle.goto(paddle.xcor(), new_y)
-
-def move_paddle_down():
-    new_y = paddle.ycor() - 20
-    paddle.goto(paddle.xcor(), new_y)
-
+r_paddle = Paddle((350, 0))
+l_paddle = Paddle((-350, 0))
 
 
 screen.listen()
-screen.onkey(key="Up", fun=move_paddle_up)
-screen.onkey(key="Down", fun=move_paddle_down)
+screen.onkey(key="Up", fun=r_paddle.move_paddle_up)
+screen.onkey(key="Down", fun=r_paddle.move_paddle_down)
+
+screen.onkey(key="w", fun=l_paddle.move_paddle_up)
+screen.onkey(key="s", fun=l_paddle.move_paddle_down)
 
 
 
 is_game_on = True
 while is_game_on:
     screen.update()
-
-
-
-
-
-
 
 
 
